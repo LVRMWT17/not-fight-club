@@ -2,11 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Forum&family=Iceberg&family=Orbit&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <title>Burning out</title>
 </head>
 <body>
-    
+    <div class="main">
+        <div class="main-text">Choose your CHARACTER</div>
+            <div class="characters">
+            <div class="character-card" onclick="activateCard(this)">
+                <img src="assets/Uno.png" alt="CodeName: Uno">
+                <div class="character-name">CodeName: "Uno"</div>
+                <div class="menu">
+                    <div id="character-info">
+                        <div class="info-item">Strength: 🟩</div>
+                        <div class="info-item">Protection: 🟩🟩🟩</div>
+                    </div>
+                </div>
+            </div>
+            <div class="character-card" onclick="activateCard(this)">
+                <img src="assets/Dos.jpg" alt="CodeName: Dos">
+                <div class="character-name">CodeName: "Dos"</div>
+                <div class="menu">
+                    <div id="character-info">
+                        <div class="info-item">Strength: 🟩🟩</div>
+                        <div class="info-item">Protection: 🟩🟩</div>
+                    </div>
+                </div>
+            </div>
+            <div class="character-card" onclick="activateCard(this)">
+                <img src="assets/Tres.png" alt="CodeName: Tres">
+                <div class="character-name">CodeName: "Tres"</div>
+                <div class="menu">
+                <div id="character-info">
+                    <div class="info-item">Strength: 🟩🟩</div>
+                    <div class="info-item">Protection: 🟩</div>
+                </div>
+                </div>
+            </div>
+            <div class="character-card" onclick="activateCard(this)">
+                <img src="assets/Tira.jpg" alt="CodeName: Tira">
+                <div class="character-name">CodeName: "Tira"</div>
+                <div class="menu">
+                <div id="character-info">
+                    <div class="info-item">Strength: 🟩🟩🟩</div>
+                    <div class="info-item">Protection: 🟩</div>
+                </div>
+                </div>
+            </div>
+            <div class="character-card" onclick="activateCard(this)">
+                <img src="assets/Jevaro.png" alt="CodeName: Jevaro">
+                <div class="character-name">CodeName: "Jevaro"</div>
+                <div class="menu">
+                <div id="character-info">
+                    <div class="info-item">Protection: 🟩</div>
+                    <div class="info-item">Strength: 🟩🟩</div>
+                </div>
+                </div>
+            </div>
+            </div>
+        <div class="main-name">
+            <div class="name">Create New Name, Traveller</div>
+            <input type="text" placeholder="New Name">
+        </div>    
+        <button id="create-button">CREATE</button>
+    </div> 
+    <script src="index.js"></script>    
 </body>
 </html>

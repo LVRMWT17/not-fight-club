@@ -1,0 +1,147 @@
+body {
+    background-image: url('assets/Neon.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+button {
+    width: 220px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: rgb(91, 72, 87);
+    color: white;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #b2a9b8;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.main-text{
+    font-size: 50px;
+    color: white;
+    font-family: 'Audiowide';
+}
+
+.characters{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+    transition: all 0.3s ease; 
+    position: relative;
+    justify-content: center;
+}
+
+.character-card{
+    width: 250px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+}
+
+.character-card:hover {
+    box-shadow: 0 0 15px 5px rgb(91, 72, 87);
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.character-card img{
+    width: 250px;
+    height: 320px;
+    border-radius: 10px;
+}
+
+.character-name{
+    text-align: center;
+    margin: 5px;
+    font-family: 'Iceberg';
+}
+
+.menu{
+    display: none;
+    width: 250px;
+    height: 50px;
+    margin-left: 25px;
+    font-family: 'Iceberg';
+}
+
+.character-card.collapsed{
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.active-card {
+    z-index: 10;
+    transform: translateX(0);
+}
+
+.name{
+    font-size: 30px;
+    color: white;
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Audiowide';
+}
+
+input{
+    width: 280px;
+    height: 35px;
+    border-radius: 18px;
+    background-color: rgba(37, 35, 35, 0.751);
+    color: white;
+    border: rgb(148, 147, 147) 1px solid;
+    margin: 20px;
+    margin-left: 85px;
+    font-family: 'Iceberg';
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+
+input[type="text"] {
+    padding-left: 15px;
+}
+
+.conversaition{
+    margin-left: 250px;
+    width: 1000px;
+    height: 800px;
+}
+
+.dialog1, .dialog2, .dialog3, .dialog4, .dialog5{
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+    gap: 70px;
+}
+
+.dialog1 img, .dialog3 img{
+    width: 130px;
+    height: 130px;
+    border-radius: 80px;
+}
+
+.dialog1 div, .dialog2 div, .dialog3 div,
+.dialog4 div, .dialog5 div{
+    width: 730px;
+    height: 60px;
+    background-color: #b2a9b8;
+    border-radius: 25px;
+    font-family: 'Forum';
+    font-size: 28px;
+    justify-content: center;
+    padding: 15px 10px;
+    margin-top: 30px;
+}
+
+.conversaition button{
+    margin-left: 400px;
+}
