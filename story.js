@@ -36,3 +36,7 @@ let characterImage = '';
     }
 
     addUserIcons();
+
+    document.getElementById('fight-button').addEventListener('click', function() {
+            window.location.href = 'battle.html';
+});
