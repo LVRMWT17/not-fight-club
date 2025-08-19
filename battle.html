@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Forum&family=Iceberg&family=Orbit&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Burning out</title>
+</head>
+<body>
+    <div class="setting-panel">
+        <a href="profile.html"><div class="profile"><img src="assets/user.png" alt="profile"></div></a>
+        <a href="settings.html"><div class="setting"><img src="assets/setting.png" alt="setting"></div></a>
+    </div>
+    <div class="battle-field">
+        <div class="hero-card">
+            <div class="hero"></div>
+            <div class="hero-hp"></div>
+            <div class="hero-hp-numbers">150/150</div>
+        </div>        
+        <div class="battle-menu">
+            <div class="battle-instruction">To make a move you should pick 1 Attack zone (to attack the enemy) and 2 Defence zones (to protect yourself).</div>
+            <div class="selection">
+                <div class="attack"><p>Attack!</p>
+                <div class="attack-choice">
+                    <input type="radio" id="attack-head" name="attack-zone" />
+                    <label for="attack-head">Head</label>
+                </div>
+                <div class="attack-choice">
+                    <input type="radio" id="attack-neck" name="attack-zone" />
+                    <label for="attack-neck">Neck</label>
+                </div>
+                <div class="attack-choice">
+                    <input type="radio" id="attack-body" name="attack-zone" />
+                    <label for="attack-body">Body</label>
+                </div>
+                <div class="attack-choice">
+                    <input type="radio" id="attack-belly" name="attack-zone" />
+                    <label for="attack-belly">Belly</label>
+                </div>
+                <div class="attack-choice">
+                    <input type="radio" id="attack-legs" name="attack-zone" />
+                    <label for="attack-legs">Legs</label>
+                </div>
+                </div>
+                <div class="defence"><p>Defence!</p>
+                <div class="defence-choice">
+                    <input type="checkbox" id="defence-head" name="defence-zone" />
+                    <label for="defence-head">Head</label>
+                </div>
+                <div class="defence-choice">
+                    <input type="checkbox" id="defence-neck" name="defence-zone" />
+                    <label for="defence-neck">Neck</label>
+                </div>
+                <div class="defence-choice">
+                    <input type="checkbox" id="defence-body" name="defence-zone" />
+                    <label for="defence-body">Body</label>
+                </div>
+                <div class="defence-choice">
+                    <input type="checkbox" id="defence-belly" name="defence-zone" />
+                    <label for="defence-belly">Belly</label>
+                </div>
+                <div class="defence-choice">
+                    <input type="checkbox" id="defence-legs" name="defence-zone" />
+                    <label for="defence-legs">Legs</label>
+                </div>
+                </div>
+                <button class="attack-button">Attack</button>
+            </div>
+        </div>
+        <div class="enemy-card">
+            <div class="enemy" id="enemy"></div>
+            <div class="enemy-hp"></div>
+            <div class="enemy-hp-numbers">150/150</div>
+        </div>
+    </div>
+    <div class="logs"></div>
+<script src="battle.js"></script>        
+</body>
+</html>
