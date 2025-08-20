@@ -310,6 +310,7 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
     border: #2e2a2a 1px solid;
     border-radius: 10px;
     background: rgba(72, 67, 67, 0.437);
+    overflow-y: auto;
 }
 
 .hero-hp{
@@ -341,4 +342,10 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
 }
 .enemy-hp-numbers {
    margin-left: 335px; 
+}
+
+.logs p {
+    color: white;
+    font-family: 'Forum';
+    font-size: 18px;
 }

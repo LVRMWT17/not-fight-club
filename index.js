@@ -46,6 +46,19 @@ function activateCard(card) {
         });
 }
 
+const enemy = [
+    { id: 1, name: 'Carat', img: 'assets/Carat.png' },
+    { id: 2, name: 'Lazurit', img: 'assets/Lazurit.png' },
+    { id: 3, name: 'Ruby', img: 'assets/Ruby.png' },
+    { id: 4, name: 'Wolfire', img: 'assets/Wolfire.png' },
+    { id: 5, name: 'Fizz', img: 'assets/Fizz.png' }
+];
+
+function assignRandomEnemy() {
+    const randomIndex = Math.floor(Math.random() * enemy.length);
+    localStorage.setItem('currentEnemyIndex', randomIndex);
+}
+
 document.getElementById('create-button').addEventListener('click', function() {
         const nameInput = document.querySelector('.main-name input[type="text"]');
         const newName = nameInput.value.trim();
@@ -54,6 +67,9 @@ document.getElementById('create-button').addEventListener('click', function() {
         if (activeCard && newName) {
             localStorage.setItem('selectedCharacter', selectedCharacter);
             localStorage.setItem('newName', newName);
+
+            assignRandomEnemy();
+
             window.location.href = 'story.html';
         } else {
             alert('Please, select a character and enter a new name.');
