@@ -7,9 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Forum&family=Iceberg&family=Orbit&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon">
     <title>Burning out</title>
 </head>
 <body>
-    
+    <div class="setting-panel">
+        <a href="profile.html"><div class="profile"><img src="assets/user.png" alt="profile"></div></a>
+        <a href="settings.html"><div class="setting"><img src="assets/setting.png" alt="setting"></div></a>
+    </div>
+<div class="settings">
+    <div class="change-name">
+        <div class="change-nameText">Change your name</div>
+        <input type="text" placeholder="New Name" id="playerNameInput">
+        <button class="changeBtn" id="changeNameBtn">Change name</button>
+    </div>
+    <div class="resetProgress">
+        <h3>Reset Progress</h3>
+        <div class="resetProgress-text">Are you sure you want to reset your progress? This action cannot be undone.</div>
+        <button class="resetProgressBtn" id="resetProgressBtn">Reset Progress</button>
+    </div>
+</div>
+<script src="settings.js"></script>    
 </body>
 </html>
