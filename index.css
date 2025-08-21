@@ -279,10 +279,10 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
 }
 .hero p {
     font-family: 'Audiowide';
-    font-size: 40px;
+    font-size: 35px;
     color: white;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
     text-shadow: 
         -1px -1px 0 #ff1616,  
         1px -1px 0 #ff1616,
@@ -292,10 +292,10 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
 
 .enemy p {
     font-family: 'Audiowide';
-    font-size: 40px;
+    font-size: 35px;
     color: rgb(0, 0, 0);
     padding-left: 25px;
-    padding-right: 25px;
+    padding-right: 15px;
         text-shadow: 
         -1px -1px 0 #ff1616,  
         1px -1px 0 #ff1616,
@@ -313,17 +313,29 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
     overflow-y: auto;
 }
 
-.hero-hp{
+.hero-hp-container, .enemy-hp-container {
+    border: #dfcaca66 1px solid;
+    background: rgba(72, 67, 67, 0.437);
+    width: 320px;
+    height: 20px;
     margin-top: -50px;
+    border-radius: 10px;
+}
+
+.enemy-hp-container {
+    margin-left: 200px;
+}
+.hero-hp-container {
     margin-left: 30px;
+}
+
+.hero-hp{
     width: 320px;
     height: 20px;
     border-radius: 10px;
     background-color: #3279f3;
 }
 .enemy-hp{
-    margin-top: -50px;
-    margin-left: 200px;
     width: 320px;
     height: 20px;
     border-radius: 10px;
@@ -338,14 +350,213 @@ input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
 }
 
 .hero-hp-numbers {
-   margin-left: 165px; 
+   margin-left: 140px; 
 }
 .enemy-hp-numbers {
-   margin-left: 335px; 
+   margin-left: 140px; 
 }
 
 .logs p {
-    color: white;
+    color: rgba(236, 220, 220, 0.925);
     font-family: 'Forum';
     font-size: 18px;
+}
+
+.message-popup {
+    position: fixed;
+    width: 500px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-family: 'Forum';
+    font-size: 28px;
+    padding-top: 180px;
+    padding-left: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.message-popup button {
+    font-family: 'Forum';
+    font-size: 20px;
+}
+
+.settings {
+    width: 600px;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.532);
+    color: white;
+    font-family: 'Forum';
+    font-size: 28px;
+    border-radius: 10px;
+    position: fixed;
+    left: 30%;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.change-nameText, .resetProgress-text {
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.resetProgress-text{
+    margin-bottom: 20px;
+}
+
+.change-name, .resetProgress{
+    border: #b2a9b8 1px solid;
+    border-radius: 10px;
+}
+
+.resetProgress h3{
+    margin-left: 15px;
+}
+
+.resetProgress button, .change-name button{
+    margin-bottom: 15px;
+    margin-left: 350px;
+}
+
+.profile-main {
+    margin-top: 20px;
+    margin-left: 60px;
+    height: 750px;
+    display: flex;
+    gap: 50px;
+}
+
+.user-profile {
+    width: 440px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.532);
+    border: #b2a9b8ae 1px solid;
+}
+
+.user-profile img{
+    box-shadow: 0 0 15px 5px rgba(155, 174, 196, 0.345);
+}
+
+.user-profile p{
+    font-family: 'Audiowide';
+    font-style: italic;
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #ff1616,  
+        1px -1px 0 #ff1616,
+        -1px 1px 0 #ff1616,
+        1px 1px 0 #ff1616;
+}
+
+.user-profile p:nth-of-type(2), .user-profile p:nth-of-type(3) {
+    font-family: 'Forum';
+    font-style: normal;
+    text-align: center;
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-shadow: none;
+}
+
+.allCaracters {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.532);
+    border: #b2a9b8ae 1px solid;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    background: rgba(0, 0, 0, 0.532);
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    margin-right: 2px;
+    transition: background-color 0.3s;
+    font-family: 'Forum';
+    font-size: 20px;
+}
+
+.tab-btn.active {
+    background: rgba(0, 0, 0, 0.532);
+    border: 1px solid #cccccc9c;
+    border-bottom: none;
+}
+
+.tab-btn:hover {
+    background: rgba(0, 0, 0, 0.532);
+}
+
+.tab-content {
+    border: 1px solid #cccccc9c;
+    border-top: none;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.532);
+    height: 678px;
+    width: 900px;
+    border-radius: 10px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.allProtagonists, .allAntagonists {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.protagonist1, .protagonist2, .protagonist3,
+.protagonist4, .protagonist5, .antagonist1,
+.antagonist2, .antagonist3, .antagonist4, .antagonist5 {
+    width: 900px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.532);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.protagonist1 img, .protagonist2 img, .protagonist3 img,
+.protagonist4 img, .protagonist5 img, .antagonist1 img,
+.antagonist2 img, .antagonist3 img, .antagonist4 img, .antagonist5 img {
+    width: 90px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.protagonist1-text, .protagonist2-text, .protagonist3-text,
+.protagonist4-text, .protagonist5-text, .antagonist1-text, .antagonist2-text, .antagonist3-text,
+.antagonist4-text, .antagonist5-text, .select {
+    color: #ffffff;
+    font-family: 'Forum';
+    margin-top: 25px;
+}
+
+.select {
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+.select:hover {
+    background-color: #b8c1cb84;
 }

@@ -59,16 +59,6 @@ const enemyDiv = document.getElementById('enemy');
 const currentEnemy = enemyPhoto[currentEnemyIndex];
 enemyDiv.innerHTML = `<p>${currentEnemy.name}</p><img src="${currentEnemy.img}" alt="${currentEnemy.name}">`;
 
-function nextEnemy() {
-    if (currentEnemyIndex < enemyPhoto.length - 1) {
-        currentEnemyIndex++;
-        localStorage.setItem('currentEnemyIndex', currentEnemyIndex);
-        const nextEnemy = enemyPhoto[currentEnemyIndex];
-        enemyDiv.innerHTML = `<p>${nextEnemy.name}</p><img src="${nextEnemy.img}" alt="${nextEnemy.name}">`;
-    } else {
-    }
-}
-
 const defenceCheckboxes = document.querySelectorAll('.defence input[type="checkbox"]');
 
 defenceCheckboxes.forEach(checkbox => {
@@ -89,10 +79,10 @@ defenceCheckboxes.forEach(checkbox => {
 });
 
 const characters = {
-    Uno: { attack: 10, defense: 10 },
+    Uno: { attack: 15, defense: 10 },
     Dos: { attack: 15, defense: 15 },
     Tres: { attack: 15, defense: 20 },
-    Tira: { attack: 15, defense: 10 },
+    Tira: { attack: 20, defense: 10 },
     Jevaro: { attack: 10, defense: 15 }
 };
 
@@ -104,10 +94,45 @@ const enemies = {
     Fizz: { attack: 10, defense: 15, attackPoints: 2, defensePoints: 1 }
 };
 
-let playerHP = 150;
-let enemyHP = 150;
+let playerHP = parseFloat(localStorage.getItem('playerHP')) || 150;
+let enemyHP = parseFloat(localStorage.getItem('enemyHP')) || 150;
 let playerCriticalHit = false;
 let enemyCriticalHit = false;
+
+function updateHealthBars() {
+    const heroHPBar = document.querySelector('.hero-hp');
+    const enemyHPBar = document.querySelector('.enemy-hp');
+    const heroHPText = document.querySelector('.hero-hp-numbers');
+    const enemyHPText = document.querySelector('.enemy-hp-numbers');
+    const maxHP = 150;
+
+    heroHPBar.style.width = `${(playerHP / maxHP) * 100}%`;
+    enemyHPBar.style.width = `${(enemyHP / maxHP) * 100}%`;
+
+    if (heroHPText) heroHPText.textContent = `${Math.max(playerHP, 0)}/${maxHP}`;
+    if (enemyHPText) enemyHPText.textContent = `${Math.max(enemyHP, 0)}/${maxHP}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadLogs();
+});
+
+function loadLogs() {
+    const logs = localStorage.getItem('gameLogs');
+    if (logs) {
+        document.querySelector('.logs').innerHTML = logs;
+    }
+}
+
+function saveLogs() {
+    const logsContent = document.querySelector('.logs').innerHTML;
+    localStorage.setItem('gameLogs', logsContent);
+}
+
+function saveData() {
+    localStorage.setItem('playerHP', playerHP);
+    localStorage.setItem('enemyHP', enemyHP);
+}
 
 function attack() {
     let selectedCharacter = localStorage.getItem('selectedCharacter');
@@ -140,7 +165,7 @@ function attack() {
     } else {
         if (Math.random() < 0.2) {
             damageToEnemy *= 1.5; 
-            logs.innerHTML += `<p><strong>Player</strong> attacked <strong>Enemy</strong> in <strong>${playerAttackZone}</strong> and dealt a critical hit of <strong>${Math.round(damageToEnemy)}</strong> damage!</p>`;
+            logs.innerHTML += `<p><strong>Player</strong> attacked <strong>Enemy</strong> in <strong>${playerAttackZone}</strong> and dealt a critical hit of <strong>${damageToEnemy.toFixed(1)}</strong> damage!</p>`;
         } else {
             logs.innerHTML += `<p><strong>Player</strong> attacked <strong>Enemy</strong> in <strong>${playerAttackZone}</strong> and dealt <strong>${damageToEnemy}</strong> damage.</p>`;
         }
@@ -159,7 +184,7 @@ function attack() {
         damageToPlayer = enemyAttackValue;
         if (Math.random() < 0.2) {
             damageToPlayer *= 1.5;
-            logs.innerHTML += `<p><strong>Enemy</strong> attacked <strong>Player</strong> in <strong>${zoneName}</strong> and dealt <strong>${Math.round(damageToPlayer)}</strong> critical damage!</p>`;
+            logs.innerHTML += `<p><strong>Enemy</strong> attacked <strong>Player</strong> in <strong>${zoneName}</strong> and dealt <strong>${damageToPlayer.toFixed(1)}</strong> critical damage!</p>`;
         } else {
             logs.innerHTML += `<p><strong>Enemy</strong> attacked <strong>Player</strong> in <strong>${zoneName}</strong> and dealt <strong>${damageToPlayer}</strong> damage.</p>`;
         }
@@ -169,10 +194,28 @@ function attack() {
 
     enemyHP -= damageToEnemy;
 
+    if (enemyHP <= 0) {
+        enemyHP = 0;
+        displayVictoryMessage();
+        return;
+    }
+
+    if (playerHP <= 0) {
+        playerHP = 0;
+        displayDefeatMessage();
+        return;
+    }
+
+    updateHealthBars();
+    saveData();
+    saveLogs();
+
     document.querySelector('.hero-hp-numbers').textContent = `${Math.max(playerHP, 0)}/150`;
     document.querySelector('.enemy-hp-numbers').textContent = `${Math.max(enemyHP, 0)}/150`;
     logs.innerHTML += '<hr style="border: 1px solid white; margin: 10px 0;">';
 }
+
+updateHealthBars();
 
 function getRandomAttackZones(num) {
     const zones = [
@@ -207,6 +250,57 @@ function getRandomDefenseZones(num) {
         selectedZones.add(zones[Math.floor(Math.random() * zones.length)]);
     }
     return Array.from(selectedZones);
+}
+
+function displayVictoryMessage() {
+    const victoryMessage = document.createElement('div');
+    victoryMessage.classList.add('message-popup');
+    victoryMessage.innerHTML = `<p>Congratulations! You defeated the enemy!</p><button onclick="nextEnemy()">Next Enemy</button>`;
+    document.body.appendChild(victoryMessage);
+    let wins = parseInt(localStorage.getItem('wins')) || 0;
+    localStorage.setItem('wins', wins + 1);
+}
+
+function displayDefeatMessage() {
+    const defeatMessage = document.createElement('div');
+    defeatMessage.classList.add('message-popup');
+    defeatMessage.innerHTML = `<p>Maybe next time. Try again!</p><button onclick="resetGame()">Try Again</button>`;
+    document.body.appendChild(defeatMessage);
+
+    let losses = parseInt(localStorage.getItem('losses')) || 0;
+    losses += 1;
+    localStorage.setItem('losses', losses);
+}
+
+function resetGame() {
+
+    playerHP = 150;
+    enemyHP = 150;
+
+    updateHealthBars();
+    document.querySelector('.logs').innerHTML = '';
+    localStorage.removeItem('gameLogs');
+    localStorage.removeItem('enemyHP');
+    localStorage.removeItem('playerHP');
+    const messagePopups = document.querySelectorAll('.message-popup');
+    messagePopups.forEach(popup => popup.remove());
+}
+
+function nextEnemy() {
+    currentEnemyIndex = (currentEnemyIndex + 1) % enemyPhoto.length;
+    localStorage.setItem('currentEnemyIndex', currentEnemyIndex);
+    const nextEnemy = enemyPhoto[currentEnemyIndex];
+    enemyDiv.innerHTML = `<p>${nextEnemy.name}</p><img src="${nextEnemy.img}" alt="${nextEnemy.name}">`;
+    enemyHP = 150;
+    playerHP = 150;
+    updateHealthBars();
+
+    document.querySelector('.logs').innerHTML = '';
+    localStorage.removeItem('gameLogs');
+    localStorage.removeItem('enemyHP');
+    localStorage.removeItem('playerHP');
+    const messagePopups = document.querySelectorAll('.message-popup');
+    messagePopups.forEach(popup => popup.remove());
 }
 
 document.querySelector('.attack-button').addEventListener('click', attack);
